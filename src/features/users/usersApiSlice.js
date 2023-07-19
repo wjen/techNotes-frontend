@@ -4,6 +4,7 @@ import { apiSlice } from '../../app/api/apiSlice';
 const usersAdapter = createEntityAdapter({});
 
 const initialState = usersAdapter.getInitialState();
+console.log('🚀 ~ file: usersApiSlice.js:7 ~ initialState:', initialState);
 
 export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -21,6 +22,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 return usersAdapter.setAll(initialState, loadedUsers);
             },
             providesTags: (result, error, arg) => {
+                console.log('🚀 ~ file: usersApiSlice.js:25 ~ result:', result);
                 if (result?.ids) {
                     return [
                         { type: 'User', id: 'LIST' },
@@ -36,6 +38,10 @@ export const { useGetUsersQuery } = usersApiSlice;
 
 // returns the query result object
 export const selectUsersResult = usersApiSlice.endpoints.getUsers.select();
+console.log(
+    '🚀 ~ file: usersApiSlice.js:45 ~ selectUsersResult:',
+    selectUsersResult
+);
 
 // creates memoized selector
 const selectUsersData = createSelector(
