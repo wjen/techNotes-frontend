@@ -60,6 +60,7 @@ const EditNoteForm = ({ note, users }) => {
         minute: 'numeric',
         second: 'numeric',
     });
+    console.log('🚀 ~ file: EditNoteForm.js:63 ~ created ~ created:', created);
     const updated = new Date(note.updatedAt).toLocaleString('en-US', {
         day: 'numeric',
         month: 'long',

@@ -12,7 +12,7 @@ const PersistLogin = () => {
 
     const [trueSuccess, setTrueSuccess] = useState(false);
 
-    // isUniitialized means the refresh function has not been called yet.
+    // isUninitialized means the refresh function has not been called yet.
     const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] =
         useRefreshMutation();
 
@@ -58,7 +58,7 @@ const PersistLogin = () => {
         console.log('error');
         content = (
             <p className="errmsg">
-                {error.data?.message}
+                {error?.data?.message}
                 <Link to="/login">Please login again</Link>.
             </p>
         );

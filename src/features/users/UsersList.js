@@ -13,6 +13,7 @@ const UsersList = () => {
         refetchOnFocus: true,
         refetchOnMountOrArgChange: true,
     });
+    console.log('🚀 ~ file: UsersList.js:7 ~ UsersList ~ users:', users);
 
     let content;
 

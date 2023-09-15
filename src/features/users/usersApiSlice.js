@@ -4,12 +4,12 @@ import { apiSlice } from '../../app/api/apiSlice';
 const usersAdapter = createEntityAdapter({});
 
 const initialState = usersAdapter.getInitialState();
-console.log('🚀 ~ file: usersApiSlice.js:7 ~ initialState:', initialState);
 
 export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getUsers: builder.query({
             query: () => '/users',
+            // rtk checker
             validateStatus: (response, result) => {
                 return response.status === 200 && !result.isError;
             },
