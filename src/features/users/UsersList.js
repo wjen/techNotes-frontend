@@ -1,7 +1,11 @@
 import { useGetUsersQuery } from './usersApiSlice';
 import User from './User';
+import { PulseLoader } from 'react-spinners';
+import useTitle from '../../hooks/useTitle';
 
 const UsersList = () => {
+    useTitle('techNotes: Users List');
+
     const {
         data: users,
         isLoading,
@@ -13,11 +17,10 @@ const UsersList = () => {
         refetchOnFocus: true,
         refetchOnMountOrArgChange: true,
     });
-    console.log('🚀 ~ file: UsersList.js:7 ~ UsersList ~ users:', users);
 
     let content;
 
-    if (isLoading) content = <p>Loading...</p>;
+    if (isLoading) content = <PulseLoader color={'#FFF'} />;
 
     if (isError) {
         content = <p className="errmsg">{error?.data?.message}</p>;
@@ -26,9 +29,9 @@ const UsersList = () => {
     if (isSuccess) {
         const { ids } = users;
 
-        const tableContent = ids?.length
-            ? ids.map((userId) => <User key={userId} userId={userId} />)
-            : null;
+        const tableContent =
+            ids?.length &&
+            ids.map((userId) => <User key={userId} userId={userId} />);
 
         content = (
             <table className="table table--users">
